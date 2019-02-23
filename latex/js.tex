@@ -1,0 +1,476 @@
+% Full instructions available at:
+% https://github.com/elauksap/focus-beamertheme
+
+\documentclass{beamer}
+\usetheme[numbering=none]{focus}
+\usepackage[utf8x]{inputenc} %So spanish accents will work%
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{verbatim}
+\usepackage{inconsolata}
+\usepackage{tikz-cd}
+\usepackage{multicol}
+
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codecyan}{RGB}{255, 0, 0}
+\definecolor{codeyellow}{RGB}{0, 85, 102}
+
+\lstdefinestyle{mystyle}{
+    commentstyle=\color{codeyellow},
+    keywordstyle=\color{magenta},
+    numberstyle=\color{codegray},
+    stringstyle=\color{codecyan},
+    basicstyle=\ttfamily\small,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle, escapeinside=||}
+\title{Lenguajes Esotéricos}
+\subtitle{De 0 a - [ - - - - - > + <] > - - . - . .}
+
+\titlegraphic{\includegraphics[scale=0.13]{latex/static/fuck.png}}
+\institute{WeCodeFest 2019}
+\date{\today}
+
+\begin{document}
+\setbeamertemplate{caption}{\raggedright\insertcaption\par}
+\begin{frame}
+        \maketitle
+\end{frame}
+    % PARAGRAPH SPACING. -----------------------------------------------------------------
+    \setlength{\parskip}{\baselineskip}%
+    \setlength{\parindent}{0pt}%
+
+\begin{frame}{Presentación}
+\centering
+{\Large Carlos Gómez (@Kurolox)\bigskip\pause
+
+ Link a la presentación:}
+
+\centering\textbf{\hyperlink{https://github.com/Kurolox/WeCode-esolang}{\Large https://github.com/Kurolox/WeCode-esolang}}
+\end{frame}
+
+\begin{frame}{Esolang 101}
+    	\pause
+        Un lenguaje esotérico (esolang) es un lenguaje de programación creado con el único propósito de experimentar con un concepto, o tener fines humorísticos.
+\end{frame}
+\begin{frame}{esolangs.org}
+\textbf{\hyperlink{https://esolangs.org}{https://esolangs.org}} es una wikia dedicada a indexar y documentar lenguajes esotéricos.\pause
+
+Ahora mismo, hay 1364 esolangs en esolangs.org.
+\end{frame}
+
+\begin{frame}{INTERCAL}
+
+INTERCAL (Compiler Language With No Pronounceable Acronym) es el primer esolang del que se tiene registro, creado en 1972.
+
+\textbf{\hyperlink{https://www.jdoodle.com/compile-intercal-online}{https://www.jdoodle.com/compile-intercal-online}} es un compilador online de INTERCAL.\pause
+
+C también fue creado en 1972, por cierto.
+\end{frame}
+
+\begin{frame}[fragile]{INTERCAL: Hello World}
+\begin{columns}
+\begin{column}{0.65\textwidth}
+\begin{lstlisting}
+DO ,1 <- #13
+PLEASE DO ,1 SUB #1 <- #238
+DO ,1 SUB #2 <- #108
+DO ,1 SUB #3 <- #112
+DO ,1 SUB #4 <- #0
+DO ,1 SUB #5 <- #64
+DO ,1 SUB #6 <- #194
+DO ,1 SUB #7 <- #48
+PLEASE DO ,1 SUB #8 <- #22
+DO ,1 SUB #9 <- #248
+DO ,1 SUB #10 <- #168
+DO ,1 SUB #11 <- #24
+DO ,1 SUB #12 <- #16
+DO ,1 SUB #13 <- #162
+PLEASE READ OUT ,1
+PLEASE GIVE UP
+    \end{lstlisting}
+\end{column}
+\begin{column}{0.35\textwidth}  %%<--- here
+\begin{itemize}
+    \item Intencionalmente complejo de leer y escribir
+    \item GIVE UP para finalizar
+    \item PLEASE
+\end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{INTERCAL: Please}
+El programa ha de tener cierto grado de "cordialidad" (aproximadamente entre 1/3 y 1/5)\pause
+
+Si el programa era "poco cordial" o "demasiado cordial", el compilador se negaba a funcionar.\pause
+
+Esto \textbf{NO} estaba documentado en ninguna parte.
+    
+\end{frame}
+
+\begin{frame}[fragile]{Brainfuck}
+    Brainfuck es uno de los esolangs mas famosos, creado en 1992.\pause
+    
+    Este es un "Hello World" en brainfuck:
+    \begin{lstlisting}
+ ++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.
+ +++++++..+++.>++.<<+++++++++++++++.>.+++.---
+ ---.--------.>+.>.
+\end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]{Brainfuck: How it works}
+
+Imagína un array de celdas de memoria, y un puntero que apunta a una celda de memoria:
+\begin{lstlisting}
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+     ^
+\end{lstlisting}
+
+Los operadores de brainfuck son los siguientes:
+\begin{multicols}{2}
+\begin{itemize}
+    \item + Suma 1 a la celda
+    \item - Resta 1 a la celda
+    \item \textless Mueve el ptr a la izqda
+    \item \textgreater Mueve el ptr a la drcha
+    \item . Imprime la celda
+    \item , Guarda en la celda
+    \item {[} Si ptr=0, salta tras el siguiente {]}
+    \item {]} Salta al {[} anterior
+    \end{itemize}
+\end{multicols}
+\end{frame}
+
+\begin{frame}{Brainfuck: Proyectos notables}
+\textbf{\hyperlink{https://fatiherikli.github.io/brainfuck-visualizer/}{https://fatiherikli.github.io/brainfuck-visualizer/}} es un compilador de brainfuck online en el que puedes visualizar paso a paso como se ejecutan las instrucciones.
+
+\textbf{\hyperlink{https://github.com/matslina/awib}{https://github.com/matslina/awib}}
+ es un compilador de brainfuck escrito en brainfuck
+    
+Tambien hay mas de 200 esolangs derivados de Brainfuck.\pause Por ejemplo, para los del taller de quantum computing de ayer...
+\textbf{\hyperlink{https://esolangs.org/wiki/Quantum_brainfuck
+}{https://esolangs.org/wiki/Quantum\_brainfuck}} 
+\end{frame}
+
+\begin{frame}[fragile]{LOLCODE y similares}
+Hay una "categoría" de esolangs humorísticos en el que las instrucciones del lenguaje son extravagantes.
+
+LOLCODE:
+\begin{lstlisting}
+HAI 1.3
+I HAS A VAR ITZ 0
+IM IN YR LP UPPIN YR VAR TIL BOTH SAEM VAR AN 5
+  VISIBLE SUM OF VAR AN 1 
+IM OUTTA YR LP
+KTHXBYE
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{LOLCODE y similares}
+TrumpScript
+\begin{lstlisting}
+make magic, not lies;
+if Sanders is fact:
+I'll tell you "Bush was never president"!
+America is great.
+\end{lstlisting}
+    
+\end{frame}
+
+\begin{frame}[fragile]{LOLCODE y similares}
+    Shakespeare:
+    \begin{lstlisting}
+    The Infamous Hello World Program.
+
+Romeo, a young man with a remarkable patience.
+Juliet, a likewise young woman of remarkable grace.
+Ophelia, a remarkable woman much in dispute with Hamlet.
+Hamlet, the flatterer of Andersen Insulting A/S.
+
+        Act I: Hamlet's insults and flattery.
+        Scene I: The insulting of Romeo.
+        
+[Enter Hamlet and Romeo]
+Hamlet:
+ You lying stupid fatherless big smelly half-witted coward!
+ You are as stupid as the difference between a handsome rich brave
+ hero and thyself! Speak your mind!
+
+ You are as brave as the sum of your fat little stuffed misused dusty
+ old rotten codpiece and a beautiful fair warm peaceful sunny summer's
+ day. You are as healthy as the difference between the sum of the
+ sweetest reddest rose and my father and yourself! Speak your mind!
+
+ You are as cowardly as the sum of yourself and the difference
+ between a big mighty proud kingdom and a horse. Speak your mind.
+
+ Speak your mind!
+
+[Exit Romeo]
+
+                    Scene II: The praising of Juliet.
+
+[Enter Juliet]
+
+Hamlet:
+ Thou art as sweet as the sum of the sum of Romeo and his horse and his
+ black cat! Speak thy mind!
+
+[Exit Juliet]
+
+                    Scene III: The praising of Ophelia.
+
+[Enter Ophelia]
+
+Hamlet:
+ Thou art as lovely as the product of a large rural town and my amazing
+ bottomless embroidered purse. Speak thy mind!
+
+ Thou art as loving as the product of the bluest clearest sweetest sky
+ and the sum of a squirrel and a white horse. Thou art as beautiful as
+ the difference between Juliet and thyself. Speak thy mind!
+
+[Exeunt Ophelia and Hamlet]
+        Act II: Behind Hamlet's back.
+        Scene I: Romeo and Juliet's conversation.
+[Enter Romeo and Juliet]
+Romeo:
+ Speak your mind. You are as worried as the sum of yourself and the
+ difference between my small smooth hamster and my nose. Speak your
+ mind!
+
+Juliet:
+ Speak YOUR mind! You are as bad as Hamlet! You are as small as the
+ difference between the square of the difference between my little pony
+ and your big hairy hound and the cube of your sorry little
+ codpiece. Speak your mind!
+
+[Exit Romeo]
+
+                    Scene II: Juliet and Ophelia's conversation.
+
+[Enter Ophelia]
+
+Juliet:
+ Thou art as good as the quotient between Romeo and the sum of a small
+ furry animal and a leech. Speak your mind!
+
+Ophelia:
+ Thou art as disgusting as the quotient between Romeo and twice the
+ difference between a mistletoe and an oozing infected blister! Speak
+ your mind!
+
+[Exeunt]
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Malbolge: El lenguaje para no programar}
+
+Malbolge es un esolang creado en 1998, y su nombre viene de \textit{Malebolge}, el noveno circulo del infierno de Dante.
+
+Es un lenguaje diseñado explícitamente para que no pueda ser usado para programar.
+
+El primer programa hecho en Malbolge apareció dos años tras la creación del lenguaje, y fue logrado a través de fuerza bruta.
+    
+\end{frame}
+
+\begin{frame}[fragile]{Malbolge}
+Hello world:
+\begin{lstlisting}
+ (=<`#9]~6ZY32Vx/4Rs+0No-&Jk)"Fh}|Bcy?`=*z]Kw%oG4UUS0/@-ejc(:'8dc
+\end{lstlisting}
+
+echo:
+\begin{lstlisting}
+ (=BA#9"=<;:3y7x54-21q/p-,+*)"!h%B0/.
+~P<
+<:(8&
+66#"!~}|{zyxwvu
+gJ%
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Malbolge: Funcionamiento}
+\pause
+    \begin{figure}
+        \centering
+        \includegraphics[width=\textwidth]{latex/static/noidea.png}
+        \caption{Caption}
+        \label{fig:my_label}
+    \end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Befunge}
+
+Befunge es un esolang el cual utiliza una estructura bidimensional y un stack, y utiliza flechas (\textless, \textgreater, v, \textasciicircum ) para dirigir el sentido del código.
+
+Aquí hay un hola mundo:
+\begin{lstlisting}
+ >              v
+v  ,,,,,"Hello"<
+>48*,          v
+v,,,,,,"World!"<
+>25*,@
+\end{lstlisting}
+    
+Podéis visualizar el funcionamiento de un programa de befunge en \textbf{\hyperlink{https://www.bedroomlan.org/tools/befunge-playground
+}{https://www.bedroomlan.org/tools/befunge-playground}} 
+\end{frame}
+\begin{frame}{Un paso mas allá: Seed}
+Seed es un esolang extremadamente simple. Solo tiene dos instrucciones:
+\begin{enumerate}
+    \item Una longitud (en bytes)
+    \item Una "seed"
+\end{enumerate}
+
+Con esas dos instrucciones, Seed genera una string aleatoria de la longitud dada, la cual se pasa a un interprete de Befunge.
+
+Compilador online: \textbf{\hyperlink{https://tio.run/#seed}{https://tio.run/#seed}} 
+\end{frame}
+
+    \begin{frame}{Code Golfing}
+¿Quien de aqui sabe lo que es el code golfing? \pause
+
+Code Golfing es una competición donde se busca resolver un problema especifico utilizando el menor numero de caracteres. 
+
+Si os interesa el tema, \textbf{\hyperlink{https://codegolf.stackexchange.com/}{https://codegolf.stackexchange.com/}} 
+
+Aquí tenéis un ejemplo:
+
+Haz un programa con el menor numero de caracteres que imprima "Hello, World!".
+\end{frame}
+\begin{frame}[fragile]{Java}
+\begin{lstlisting}
+interface A{static void main(String[]a){System.out.print("Hello, World!");}}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Python}
+\begin{lstlisting}
+print"Hello, World!"
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{PHP}
+\begin{lstlisting}
+Hello, World!
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Help, WarDoq!}
+\begin{lstlisting}
+W
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Stuck}
+
+% Aqui empieza el Hello World de whitespace
+   			 		   		  	 
+    
+		    	  	   
+	
+     		  	 	
+	
+     		 		  
+ 
+ 	
+  	
+     		 				
+	
+     	     
+	
+     	 	 			
+	
+     		 				
+	
+     			  	 
+	
+     		 		  
+	
+     		  	  
+	
+     	    	
+	
+     	 	 
+	
+   
+
+
+
+% Aqui termina el hello world de whitespace
+\end{frame}
+
+\begin{frame}{Cambiando de tema, Whitespace}
+Whitespace es un esolang en el que solo hay tres caracteres aceptados y el resto es ignorado:
+\begin{itemize}
+    \item Espacios
+    \item Tabulador
+    \item Salto de linea
+\end{itemize}\pause
+
+Os he metido el hola mundo en la diapositiva anterior.
+\end{frame}
+
+\begin{frame}{JavaScript (de verdad)}
+Cuantos de aquí sois de frontend? \pause
+
+Vamos a jugar a un juego rápido para ver que tal lleváis JavaScript.
+    
+\end{frame}
+
+\begin{frame}[fragile]{Ronda 1}
+
+A que evalúa []+[]?\pause
+
+\begin{lstlisting}
+ ""
+\end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]{Ronda 2}
+Vamos con una mas difícil...
+\begin{lstlisting}[basicstyle=\tiny]
+ [][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(!![]+[])[+[]]+(!![]+[])[!+[]+!+[]+!+[]]+(!![]+[])[+!+[]]][([][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(!![]+[])[+[]]+(!![]+[])[!+[]+!+[]+!+[]]+(!![]+[])[+!+[]]]+[])[!+[]+!+[]+!+[]]+(!![]+[][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(!![]+[])[+[]]+(!![]+[])[!+[]+!+[]+!+[]]+(!![]+[])[+!+[]]])[+!+[]+[+[]]]+([][[]]+[])[+!+[]]+(![]+[])[!+[]+!+[]+!+[]]+(!![]+[])[+[]]+(!![]+[])[+!+[]]+([][[]]+[])[+[]]+([][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(!![]+[])[+[]]+(!![]+[])[!+[]+!+[]+!+[]]+(!![]+[])[+!+[]]]+[])[!+[]+!+[]+!+[]]+(!![]+[])[+[]]+(!![]+[][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(!![]+[])[+[]]+(!![]+[])[!+[]+!+[]+!+[]]+(!![]+[])[+!+[]]])[+!+[]+[+[]]]+(!![]+[])[+!+[]]]((![]+[])[+!+[]]+(![]+[])[!+[]+!+[]]+(!![]+[])[!+[]+!+[]+!+[]]+(!![]+[])[+!+[]]+(!![]+[])[+[]]+(![]+[][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(!![]+[])[+[]]+(!![]+[])[!+[]+!+[]+!+[]]+(!![]+[])[+!+[]]])[!+[]+!+[]+[+[]]]+([]+[])[(![]+[])[+[]]+(!![]+[][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(!![]+[])[+[]]+(!![]+[])[!+[]+!+[]+!+[]]+(!![]+[])[+!+[]]])[+!+[]+[+[]]]+([][[]]+[])[+!+[]]+(!![]+[])[+[]]+([][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(!![]+[])[+[]]+(!![]+[])[!+[]+!+[]+!+[]]+(!![]+[])[+!+[]]]+[])[!+[]+!+[]+!+[]]+(!![]+[][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(!![]+[])[+[]]+(!![]+[])[!+[]+!+[]+!+[]]+(!![]+[])[+!+[]]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(!![]+[][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(!![]+[])[+[]]+(!![]+[])[!+[]+!+[]+!+[]]+(!![]+[])[+!+[]]])
+\end{lstlisting}
+    
+\end{frame}
+
+\begin{frame}{JSFuck}
+\begin{enumerate}
+    \item Utiliza JavaScript \pause
+    \item Limita tus entradas a las siguientes: {[} {]} + {(} {)} ! \pause
+    \item ??? \pause
+    \item JSFuck \pause
+\end{enumerate}
+\centering
+\textbf{\hyperlink{http://www.jsfuck.com}{http://www.jsfuck.com}} 
+\end{frame}
+
+\begin{frame}{Y mucho mas...}
+\begin{multicols}{2}
+\begin{itemize}
+    \item \hyperlink{https://esolangs.org/wiki/RTFM}{RTFM}
+    \item \hyperlink{https://esolangs.org/wiki/Wierd}{Wierd}
+    \item \hyperlink{https://esolangs.org/wiki/Fugue}{Fugue}
+    \item \hyperlink{https://esolangs.org/wiki/DNA-Sharp}{DNA#}
+    \item \hyperlink{https://esolangs.org/wiki/Pi}{Pi}
+    \item \hyperlink{https://esolangs.org/wiki/Pit}{Pit}
+\end{itemize}
+\end{multicols}
+    
+\end{frame}
+\end{document}
